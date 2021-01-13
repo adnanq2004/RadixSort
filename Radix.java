@@ -3,6 +3,9 @@ import java.util.*;
 public class Radix{
 
   public static int nth(int n, int col) {
+    if (col > length(n)) {
+    	throw new IndexOutOfBoundsException("Index Out Of Bounds");
+    }
     if (col == 0) {
       return n % 10;
     }

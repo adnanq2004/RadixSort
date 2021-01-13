@@ -227,7 +227,7 @@ public class Radix{
 
                 SortableLinkedList[] buckets= new SortableLinkedList[10];
 
-		buckets[0] = bucket9;
+		/*buckets[0] = bucket9;
 		buckets[1] = bucket8;
 		buckets[2] = bucket7;
 		buckets[3] = bucket6;
@@ -236,7 +236,18 @@ public class Radix{
 		buckets[6] = bucket3;
 		buckets[7] = bucket2;
 		buckets[8] = bucket1;
-		buckets[9] = bucket0;
+		buckets[9] = bucket0;*/
+
+		buckets[0] = bucket0;
+                buckets[1] = bucket1;
+                buckets[2] = bucket2;
+                buckets[3] = bucket3;
+                buckets[4] = bucket4;
+                buckets[5] = bucket5;
+                buckets[6] = bucket6;
+                buckets[7] = bucket7;
+                buckets[8] = bucket8;
+                buckets[9] = bucket9;
 		
 		SortableLinkedList trash = new SortableLinkedList();
 
@@ -248,7 +259,7 @@ public class Radix{
 				buckets[column].add(buckets2[0].get(j));
 			}
 			trash.extend(buckets2[0]);
-			merge(buckets2[0], buckets);
+			reversemerge(buckets2[0], buckets);
 			for (int n = 0; n < buckets.length; n++) {
 				trash.extend(buckets[n]);
 			}
@@ -257,6 +268,12 @@ public class Radix{
 		trash.extend(data);
 		merge(data, buckets2);
 
+	}
+
+	private static void reversemerge(SortableLinkedList original, SortableLinkedList[] buckets) {
+		for (int i = buckets.length -1; i >= 0; i--) {
+                        original.extend(buckets[i]);
+                }
 	}
 
 	private static int greatestdig(SortableLinkedList list) {

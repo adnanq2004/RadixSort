@@ -4,7 +4,8 @@ public class Radix{
 
   public static int nth(int n, int col) {
     if (col > length(n)) {
-    	throw new IndexOutOfBoundsException("Index Out Of Bounds");
+    	// throw new IndexOutOfBoundsException("Index Out Of Bounds");
+      return 0;
     }
     if (col == 0) {
       return n % 10;

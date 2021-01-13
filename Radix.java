@@ -27,11 +27,11 @@ public class Radix{
     return val;
   }
 
-	public static void merge(MyLinkedList original, MyLinkedList[]buckets) {
+	/*public static void merge(MyLinkedList original, MyLinkedList[]buckets) {
 		for (int i = 0; i < buckets.length; i++) {
 			original.extend(buckets[i]);
 		}
-	}
+	}*/
 
 	public static void merge(SortableLinkedList original, SortableLinkedList[] buckets) {
 		for (int i = 0; i < buckets.length; i++) {
@@ -41,7 +41,7 @@ public class Radix{
 
 	public static void radixSortSimple(SortableLinkedList data) {
 	
-		/*SortableLinkedList bucket0 = new SortableLinkedList();
+		SortableLinkedList bucket0 = new SortableLinkedList();
 		SortableLinkedList bucket1 = new SortableLinkedList();
 		SortableLinkedList bucket2 = new SortableLinkedList();
 		SortableLinkedList bucket3 = new SortableLinkedList();
@@ -74,9 +74,7 @@ public class Radix{
 			}
 			main.extend(data);
 			merge(data, buckets);
-		}*/
-
-		data = thing(data);
+		}
 	}
 
 	private static SortableLinkedList thing(SortableLinkedList data) {

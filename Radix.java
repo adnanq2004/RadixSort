@@ -193,7 +193,7 @@ public class Radix{
 			{
                 }*/
 
-		radixSortSimple(data);
+		//radixSortSimple(data);
 
 		
 
@@ -211,6 +211,8 @@ public class Radix{
 				buckets2[1].add(data.get(i));
 			}
 		}
+
+		radixSortSimple(buckets2[1]);
 
 		SortableLinkedList bucket0 = new SortableLinkedList();
                 SortableLinkedList bucket1 = new SortableLinkedList();

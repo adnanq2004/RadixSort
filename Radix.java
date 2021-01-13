@@ -40,83 +40,54 @@ public class Radix{
 	}
 
 	public static void radixSortSimple(SortableLinkedList data) {
-
-		SortableLinkedList bucket0 = new SortableLinkedList();
-		SortableLinkedList bucket1 = new SortableLinkedList();
-		SortableLinkedList bucket2 = new SortableLinkedList();
-		SortableLinkedList bucket3 = new SortableLinkedList();
-		SortableLinkedList bucket4 = new SortableLinkedList();
-		SortableLinkedList bucket5 = new SortableLinkedList();
-		SortableLinkedList bucket6 = new SortableLinkedList();
-		SortableLinkedList bucket7 = new SortableLinkedList();
-		SortableLinkedList bucket8 = new SortableLinkedList();
-		SortableLinkedList bucket9 = new SortableLinkedList();
+    //
+		// SortableLinkedList bucket0 = new SortableLinkedList();
+		// SortableLinkedList bucket1 = new SortableLinkedList();
+		// SortableLinkedList bucket2 = new SortableLinkedList();
+		// SortableLinkedList bucket3 = new SortableLinkedList();
+		// SortableLinkedList bucket4 = new SortableLinkedList();
+		// SortableLinkedList bucket5 = new SortableLinkedList();
+		// SortableLinkedList bucket6 = new SortableLinkedList();
+		// SortableLinkedList bucket7 = new SortableLinkedList();
+		// SortableLinkedList bucket8 = new SortableLinkedList();
+		// SortableLinkedList bucket9 = new SortableLinkedList();
 
 		SortableLinkedList[] buckets= new SortableLinkedList[10];
-		buckets[0] = bucket0;
-		buckets[1] = bucket1;
-		buckets[2] = bucket2;
-		buckets[3] = bucket3;
-		buckets[4] = bucket4;
-		buckets[5] = bucket5;
-		buckets[6] = bucket6;
-		buckets[7] = bucket7;
-		buckets[8] = bucket8;
-		buckets[9] = bucket9;
+		// buckets[0] = bucket0;
+		// buckets[1] = bucket1;
+		// buckets[2] = bucket2;
+		// buckets[3] = bucket3;
+		// buckets[4] = bucket4;
+		// buckets[5] = bucket5;
+		// buckets[6] = bucket6;
+		// buckets[7] = bucket7;
+		// buckets[8] = bucket8;
+		// buckets[9] = bucket9;
+
+    for (int i = 0; i < 10; i++) {
+      SortableLinkedList temp = new SortableLinkedList();
+      buckets[i] = temp;
+    }
 
 		SortableLinkedList main = new SortableLinkedList();
 
 		int max = greatestdig(data);
 		for(int i = 0; i < max; i++) {
-			for (int j = 0; j < data.size(); j++) {
-				int column = nth(data.get(j), i);
-				buckets[column].add(data.get(j));
-			}
-			main.extend(data);
+			// for (int j = 0; j < data.size(); j++) {
+			// 	int column = nth(data.get(j), i);
+			// 	buckets[column].add(data.get(j));
+			// }
+      while (data.size() > 0) {
+        int temp = data.remove(0);
+        int column = nth(temp, i);
+        buckets[column].add(temp);
+      }
+			// main.extend(data);
 			merge(data, buckets);
+      // for (int n = 0; n < buckets.length; n++) {
+      //   main.extend(buckets[n]);
+      // }
 		}
-	}
-
-	private static SortableLinkedList thing(SortableLinkedList data) {
-
-		            SortableLinkedList bucket0 = new SortableLinkedList();
-                SortableLinkedList bucket1 = new SortableLinkedList();
-                SortableLinkedList bucket2 = new SortableLinkedList();
-                SortableLinkedList bucket3 = new SortableLinkedList();
-                SortableLinkedList bucket4 = new SortableLinkedList();
-                SortableLinkedList bucket5 = new SortableLinkedList();
-                SortableLinkedList bucket6 = new SortableLinkedList();
-                SortableLinkedList bucket7 = new SortableLinkedList();
-                SortableLinkedList bucket8 = new SortableLinkedList();
-                SortableLinkedList bucket9 = new SortableLinkedList();
-
-                SortableLinkedList[] buckets= new SortableLinkedList[10];
-                buckets[0] = bucket0;
-                buckets[1] = bucket1;
-                buckets[2] = bucket2;
-                buckets[3] = bucket3;
-                buckets[4] = bucket4;
-                buckets[5] = bucket5;
-                buckets[6] = bucket6;
-                buckets[7] = bucket7;
-                buckets[8] = bucket8;
-                buckets[9] = bucket9;
-
-                SortableLinkedList main = new SortableLinkedList();
-
-                int max = greatestdig(data);
-                for(int i = 0; i < max; i++) {
-                        for (int j = 0; j < data.size(); j++) {
-                                int column = nth(data.get(j), i);
-                                buckets[column].add(data.get(j));
-                        }
-                        main.extend(data);
-                        merge(data,buckets);
-                        for (int n = 0; n < buckets.length; n++) {
-                                main.extend(buckets[n]);
-			}
-		}
-		return data;
 	}
 
 	public static void radixSort(SortableLinkedList data) {
@@ -126,40 +97,53 @@ public class Radix{
 		buckets2[0] = bucketnegative;
 		buckets2[1] = bucketnonnegative;
 
-		for (int i = 0; i < data.size(); i++) {
-			if (data.get(i) < 0) {
-				buckets2[0].add(data.get(i));
-			}
-			else {
-				buckets2[1].add(data.get(i));
-			}
+		while (data.size() > 0){
+			// if (data.get(i) < 0) {
+			// 	buckets2[0].add(data.get(i));
+			// }
+			// else {
+			// 	buckets2[1].add(data.get(i));
+			// }
+      int temp = data.remove(0);
+      if (temp < 0) {
+        buckets2[0].add(temp);
+      }
+      else {
+        buckets2[1].add(temp);
+      }
 		}
 
 		radixSortSimple(buckets2[1]);
+    //
+		// SortableLinkedList bucket0 = new SortableLinkedList();
+    // SortableLinkedList bucket1 = new SortableLinkedList();
+    // SortableLinkedList bucket2 = new SortableLinkedList();
+    // SortableLinkedList bucket3 = new SortableLinkedList();
+    // SortableLinkedList bucket4 = new SortableLinkedList();
+    // SortableLinkedList bucket5 = new SortableLinkedList();
+    // SortableLinkedList bucket6 = new SortableLinkedList();
+    // SortableLinkedList bucket7 = new SortableLinkedList();
+    // SortableLinkedList bucket8 = new SortableLinkedList();
+    // SortableLinkedList bucket9 = new SortableLinkedList();
+    //
+    SortableLinkedList[] buckets= new SortableLinkedList[10];
+    //
+    // buckets[0] = bucket0;
+    // buckets[1] = bucket1;
+    // buckets[2] = bucket2;
+    // buckets[3] = bucket3;
+    // buckets[4] = bucket4;
+    // buckets[5] = bucket5;
+    // buckets[6] = bucket6;
+    // buckets[7] = bucket7;
+    // buckets[8] = bucket8;
+    // buckets[9] = bucket9;
+    //
 
-		SortableLinkedList bucket0 = new SortableLinkedList();
-                SortableLinkedList bucket1 = new SortableLinkedList();
-                SortableLinkedList bucket2 = new SortableLinkedList();
-                SortableLinkedList bucket3 = new SortableLinkedList();
-                SortableLinkedList bucket4 = new SortableLinkedList();
-                SortableLinkedList bucket5 = new SortableLinkedList();
-                SortableLinkedList bucket6 = new SortableLinkedList();
-                SortableLinkedList bucket7 = new SortableLinkedList();
-                SortableLinkedList bucket8 = new SortableLinkedList();
-                SortableLinkedList bucket9 = new SortableLinkedList();
-
-                SortableLinkedList[] buckets= new SortableLinkedList[10];
-
-		            buckets[0] = bucket0;
-                buckets[1] = bucket1;
-                buckets[2] = bucket2;
-                buckets[3] = bucket3;
-                buckets[4] = bucket4;
-                buckets[5] = bucket5;
-                buckets[6] = bucket6;
-                buckets[7] = bucket7;
-                buckets[8] = bucket8;
-                buckets[9] = bucket9;
+    for (int i = 0; i < 10; i++) {
+      SortableLinkedList temp = new SortableLinkedList();
+      buckets[i] = temp;
+    }
 
 		SortableLinkedList trash = new SortableLinkedList();
 

@@ -41,30 +41,8 @@ public class Radix{
 	}
 
 	public static void radixSortSimple(SortableLinkedList data) {
-    //
-		// SortableLinkedList bucket0 = new SortableLinkedList();
-		// SortableLinkedList bucket1 = new SortableLinkedList();
-		// SortableLinkedList bucket2 = new SortableLinkedList();
-		// SortableLinkedList bucket3 = new SortableLinkedList();
-		// SortableLinkedList bucket4 = new SortableLinkedList();
-		// SortableLinkedList bucket5 = new SortableLinkedList();
-		// SortableLinkedList bucket6 = new SortableLinkedList();
-		// SortableLinkedList bucket7 = new SortableLinkedList();
-		// SortableLinkedList bucket8 = new SortableLinkedList();
-		// SortableLinkedList bucket9 = new SortableLinkedList();
 
 		SortableLinkedList[] buckets= new SortableLinkedList[10];
-		// buckets[0] = bucket0;
-		// buckets[1] = bucket1;
-		// buckets[2] = bucket2;
-		// buckets[3] = bucket3;
-		// buckets[4] = bucket4;
-		// buckets[5] = bucket5;
-		// buckets[6] = bucket6;
-		// buckets[7] = bucket7;
-		// buckets[8] = bucket8;
-		// buckets[9] = bucket9;
-
     for (int i = 0; i < 10; i++) {
       SortableLinkedList temp = new SortableLinkedList();
       buckets[i] = temp;
@@ -115,31 +93,8 @@ public class Radix{
 		}
 
 		radixSortSimple(buckets2[1]);
-    //
-		// SortableLinkedList bucket0 = new SortableLinkedList();
-    // SortableLinkedList bucket1 = new SortableLinkedList();
-    // SortableLinkedList bucket2 = new SortableLinkedList();
-    // SortableLinkedList bucket3 = new SortableLinkedList();
-    // SortableLinkedList bucket4 = new SortableLinkedList();
-    // SortableLinkedList bucket5 = new SortableLinkedList();
-    // SortableLinkedList bucket6 = new SortableLinkedList();
-    // SortableLinkedList bucket7 = new SortableLinkedList();
-    // SortableLinkedList bucket8 = new SortableLinkedList();
-    // SortableLinkedList bucket9 = new SortableLinkedList();
-    //
+
     SortableLinkedList[] buckets= new SortableLinkedList[10];
-    //
-    // buckets[0] = bucket0;
-    // buckets[1] = bucket1;
-    // buckets[2] = bucket2;
-    // buckets[3] = bucket3;
-    // buckets[4] = bucket4;
-    // buckets[5] = bucket5;
-    // buckets[6] = bucket6;
-    // buckets[7] = bucket7;
-    // buckets[8] = bucket8;
-    // buckets[9] = bucket9;
-    //
 
     for (int i = 0; i < 10; i++) {
       SortableLinkedList temp = new SortableLinkedList();
@@ -150,19 +105,20 @@ public class Radix{
 
 		int max2 = greatestdig(buckets2[0]);
 		for (int i = 0; i < max2; i++) {
-			for (int j = 0; j < buckets2[0].size(); j++) {
-				int temp = Math.abs(buckets2[0].get(j));
-				int column = nth(temp, i);
-				buckets[column].add(buckets2[0].get(j));
+			// for (int j = 0; j < buckets2[0].size(); j++) {
+      while (buckets2[0].size() > 0) {
+				int temp = buckets2[0].remove(0);
+				int column = nth( Math.abs(temp), i);
+				buckets[column].add(temp);
 			}
-			trash.extend(buckets2[0]);
+			// trash.extend(buckets2[0]);
 			reversemerge(buckets2[0], buckets);
-			for (int n = 0; n < buckets.length; n++) {
-				trash.extend(buckets[n]);
-			}
+			// for (int n = 0; n < buckets.length; n++) {
+			// 	trash.extend(buckets[n]);
+			// }
 		}
 
-		trash.extend(data);
+		// trash.extend(data);
 		merge(data, buckets2);
 
 	}
@@ -175,11 +131,18 @@ public class Radix{
 
 	private static int greatestdig(SortableLinkedList list) {
 		int greatest = 0;
-		for (int i = 0; i < list.size(); i++) {
-			if (length(list.get(i)) > greatest) {
-				greatest = length(list.get(i));
-			}
-		}
+		// for (int i = 0; i < list.size(); i++) {
+		// 	if (length(list.get(i)) > greatest) {
+		// 		greatest = length(list.get(i));
+		// 	}
+		// }
+    for (int i = 0; i < list.size(); i++) {
+      int temp = list.remove(0);
+      if (length(temp) > greatest) {
+        greatest = length(temp);
+      }
+      list.add(temp);
+    }
 		return greatest;
 	}
 
